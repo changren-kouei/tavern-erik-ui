@@ -51,7 +51,7 @@ function common_path(lhs: string, rhs: string) {
 function glob_script_files() {
   const results: string[] = [];
 
-  fs.globSync(`{示例,src}/**/index.{ts,tsx,js,jsx}`)
+  fs.globSync(`src/**/index.{ts,tsx,js,jsx}`)
     .filter(
       file => process.env.CI !== 'true' || !fs.readFileSync(path.join(import.meta.dirname, file)).includes('@no-ci'),
     )
@@ -487,7 +487,10 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
       minimizer: [
         argv.mode === 'production'
           ? new TerserPlugin({
-              terserOptions: { format: { quote_style: 1 }, mangle: { reserved: ['_', 'toastr', 'YAML', '$', 'z'] } },
+              terserOptions: {
+                format: { quote_style: 1, ascii_only: true },
+                mangle: { reserved: ['_', 'toastr', 'YAML', '$', 'z'] },
+              },
             })
           : new TerserPlugin({
               extractComments: false,
@@ -520,6 +523,11 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
       },
     },
     externals: ({ context, request }, callback) => {
+      // Frontend entries are published as self-contained HTML so they can also
+      // be rendered and tested outside the SillyTavern host page.
+      if (entry.html !== undefined) {
+        return callback();
+      }
       if (!context || !request) {
         return callback();
       }

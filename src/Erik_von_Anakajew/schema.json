@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前时间": {
+          "default": "2096年11月18日 01:37",
+          "type": "string"
+        }
+      }
+    },
+    "Erik": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "_角色名称": {
+          "default": "Erik·von·Anakajew",
+          "type": "string"
+        },
+        "当前衣着": {
+          "default": "白衬衫袖口挽至前臂，领口微松；实验外套搭在椅背",
+          "type": "string"
+        },
+        "当前心理": {
+          "default": "姐姐果然还是来了；他不愿承认自己一直在等她。",
+          "type": "string"
+        },
+        "性器状态": {
+          "default": "放松，无明显反应",
+          "type": "string"
+        },
+        "理智值": {
+          "default": 92,
+          "type": "number"
+        },
+        "欲望": {
+          "default": 38,
+          "type": "number"
+        },
+        "关系阶段": {
+          "default": "守护如常",
+          "type": "string",
+          "enum": [
+            "守护如常",
+            "欲望自觉",
+            "边界试探",
+            "秘密恋人"
+          ]
+        }
+      }
+    }
+  }
+}
