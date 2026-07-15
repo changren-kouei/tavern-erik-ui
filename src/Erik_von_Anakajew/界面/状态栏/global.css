@@ -1,0 +1,32 @@
+:root {
+  color-scheme: light;
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', Georgia, serif;
+  background: transparent;
+  color: #2e3440;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  background: transparent;
+}
+
+body {
+  padding: clamp(8px, 1.5vw, 18px);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #69afcb;
+  outline-offset: 3px;
+}
